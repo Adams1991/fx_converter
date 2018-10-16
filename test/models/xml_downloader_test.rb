@@ -1,6 +1,7 @@
 require 'test_helper'
 require 'nokogiri'
 
+
 class XmlDownloaderTest < ActiveSupport::TestCase
 
   def setup
@@ -8,12 +9,16 @@ class XmlDownloaderTest < ActiveSupport::TestCase
   end
 
   test "get_XML_from_url() retreives XML from url" do
-    doc =  @xmlDownloader.xml
+    @xmlDownloader.get_XML_from_url()
+    doc = @xmlDownloader.xml
+    # checks if data matches XML
     result = doc.xpath('//Cube/Cube')[0]["time"]
-    assert_equal("2018-10-16", result)
+    assert_equal "2018-10-16", result
   end
 
-  test "can schedule url upload at specific time/interval" do
+
+  test "check data can be saved to db" do
+    @xmlDownloader.get_XML_from_url()
     
   end
 

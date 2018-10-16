@@ -1,0 +1,3 @@
+class XmlDownloader < ApplicationRecord
+  
+end

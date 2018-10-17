@@ -16,11 +16,11 @@ class XmlDownloaderTest < ActiveSupport::TestCase
   end
 
 
-  test "if XML being downloaded has structure is correct" do
+  test "if XML being downloaded has structure is correct for currency" do
     result = @doc.at_xpath('//Cube/Cube/Cube')["currency"]
     assert_equal "USD", result
   end
-  
+
 # TODO: futher test cases could be added to check date and rate attributes
 
 

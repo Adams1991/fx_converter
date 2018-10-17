@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hi Guys,
 
-Things you may want to cover:
+Thought I would just write a quick ReadMe to help with navigation.
 
-* Ruby version
+At the moment there are two models. One that downloads the XML (XmlDownloader) and one that parses this and attempts to save t to the DB. At the moment the saving to the DB function is not functional so looking into what may be causing that to hang now.
 
-* System dependencies
+If you want to check the status of the scheduled task I used a gem called Crono (which is Ruby based scheduler) and it has it's own UI.
+Just run 'bundle exec crono RAILS_ENV=development' in the command line and then go to http://localhost:3000/crono/ to check everything is grand.
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Version Stuff
+* Ruby version - 2.3
+* Rails versions - 5.1

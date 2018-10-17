@@ -6,21 +6,23 @@ class XmlDownloaderTest < ActiveSupport::TestCase
 
   def setup
     @xmlDownloader = XmlDownloader.new()
-  end
-
-  test "get_XML_from_url() retreives XML from url" do
     @xmlDownloader.get_XML_from_url()
-    doc = @xmlDownloader.xml
-    # checks if data matches XML
-    result = doc.xpath('//Cube/Cube')[0]["time"]
-    assert_equal "2018-10-16", result
+    @doc = @xmlDownloader.xml
+  end
+
+  test "get_XML_from_url() retreives XML from url without errors" do
+    result = @doc.errors.length
+    assert_equal 0, result
   end
 
 
-  test "check data can be saved to db" do
-    @xmlDownloader.get_XML_from_url()
-    
+  test "if XML being downloaded has structure is correct" do
+    result = @doc.at_xpath('//Cube/Cube/Cube')["currency"]
+    assert_equal "USD", result
   end
+  
+# TODO: futher test cases could be added to check date and rate attributes
+
 
 
 end

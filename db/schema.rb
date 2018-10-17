@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181017075859) do
+ActiveRecord::Schema.define(version: 20181017090824) do
 
   create_table "crono_jobs", force: :cascade do |t|
     t.string "job_id", null: false
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20181017075859) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_crono_jobs_on_job_id", unique: true
+  end
+
+  create_table "daily_euro_ex_rates", force: :cascade do |t|
+    t.string "time"
+    t.string "currency"
+    t.string "rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "xml_downloaders", force: :cascade do |t|

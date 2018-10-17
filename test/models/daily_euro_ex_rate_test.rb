@@ -22,4 +22,6 @@ class DailyEuroExRateTest < ActiveSupport::TestCase
     result = @dailyEuroExRate.convert_currency_using_specific_day_rates(100, '2018-09-25', 'USD', 'JPY')
     assert_equal 11274.518, result
   end
+
+  
 end

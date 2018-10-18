@@ -1,8 +1,8 @@
 class ExchangeRate < ApplicationRecord
-
   after_initialize :set_default_xml_attr
 
-  def set_default_xml_attr(time = 'time', rate = 'rate', currency = 'currency')
+  def set_default_xml_attr(time = 'time', rate = 'rate', currency = 'currency', url = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml')
+    @url = url
     @time_xml_attr = time
     @rate_xml_attr = rate
     @currency_xml_attr = currency
@@ -18,6 +18,10 @@ class ExchangeRate < ApplicationRecord
 
   def return_current_currency_attr_setting
     @currency_xml_attr
+  end
+
+  def return_current_url_setting
+    @url
   end
 
   def parse_xml_and_save_daily_rates(xml)
@@ -56,6 +60,6 @@ class ExchangeRate < ApplicationRecord
 
   # method used in config/cronotab for daily download and saving
   def perform
-    parse_xml_and_save_daily_rates(XmlDownloader.new.xml)
+    parse_xml_and_save_daily_rates(XmlDownloader.get_XML_from_url(@url))
   end
 end

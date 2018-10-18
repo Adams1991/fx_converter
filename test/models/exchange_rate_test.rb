@@ -3,7 +3,8 @@ require 'test_helper'
 class ExchangeRateTest < ActiveSupport::TestCase
   def setup
     @exchangeRate = ExchangeRate.new
-    @exchangeRate.parse_xml_and_save_daily_rates(XmlDownloader.new.xml)
+    xmlDownloader = XmlDownloader.new
+    @exchangeRate.parse_xml_and_save_daily_rates(xmlDownloader.get_XML_from_url('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'))
   end
 
   test 'parsing and saving of rate from XML' do
@@ -43,13 +44,12 @@ class ExchangeRateTest < ActiveSupport::TestCase
 
   test 'converting amount using calculated exchange rate' do
     result = @exchangeRate.convert_currency_using_specific_day_rates(100, '2018-09-25', 'USD', 'JPY')
-    assert_equal 11274.518, result
+    assert_equal 11_274.518, result
   end
 
   test 'changing xml attr works for time attr' do
     @exchangeRate.set_default_xml_attr('day', 'rate', 'currency')
     result = @exchangeRate.return_current_time_attr_setting
-    assert_equal "day", result
+    assert_equal 'day', result
   end
-
 end

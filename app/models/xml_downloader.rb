@@ -3,16 +3,15 @@ require 'nokogiri'
 require 'openssl'
 
 class XmlDownloader < ApplicationRecord
-  attr_accessor(:xml)
+  attr_reader(:xml)
 
-  def initialize()
+  def initialize
     @xml = []
-    self.get_XML_from_url()
+    get_XML_from_url
   end
 
-  def get_XML_from_url()
-    doc = Nokogiri::XML(open("https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE))
+  def get_XML_from_url
+    doc = Nokogiri::XML(open('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml', ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE))
     @xml = doc
   end
-
 end

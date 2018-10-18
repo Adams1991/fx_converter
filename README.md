@@ -16,6 +16,8 @@ I envisioned both of these methods being used to provide output for a front end 
 
 I have also input a method for changing the settings for the URL and XML attributes. This was to hopefully make the library more flexible for the different XML source in production.
 
+I really hope this library is up to scratch and would love feedback on what I could have improved on.
+
 Version Stuff
 * Ruby version - 2.3
 * Rails versions - 5.1

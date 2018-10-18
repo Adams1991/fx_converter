@@ -1,8 +1,8 @@
 class DailyEuroExRate < ApplicationRecord
 
   def parse_xml_and_save_daily_rates(xml)
-      xml.xpath('//Cube[@time]').each do |day|
-        day.xpath('./Cube[@rate]').each do |exh|
+      xml.xpath('//*[@time]').each do |day|
+        day.xpath('./*[@rate and @currency]').each do |exh|
             DailyEuroExRate.create(:time => day['time'], :currency => exh['currency'], :rate => exh['rate'].to_s )
         end
       end
@@ -20,6 +20,7 @@ class DailyEuroExRate < ApplicationRecord
     return amount.to_f*conversion_rate
   end
 
+ # method used in config/cronotab for daily download and saving
   def perform
     self.parse_xml_and_save_daily_rates(XmlDownloader.new().xml)
   end

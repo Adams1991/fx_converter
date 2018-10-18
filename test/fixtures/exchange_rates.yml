@@ -2,10 +2,10 @@
 
 one:
   time: MyString
-  currency: MyString
+  currency: MyText
   rate: MyString
 
 two:
   time: MyString
-  currency: MyString
+  currency: MyText
   rate: MyString

@@ -18,6 +18,6 @@ I have also input a method for changing the settings for the URL and XML attribu
 
 I really hope this library is up to scratch and would love feedback on what I could have improved on.
 
-Version Stuff
+Version Info
 * Ruby version - 2.3
 * Rails versions - 5.1

@@ -6,6 +6,7 @@ class ExchangeRate < ApplicationRecord
     @time_xml_attr = time
     @rate_xml_attr = rate
     @currency_xml_attr = currency
+    @xmlDownloader = XmlDownloader.new
   end
 
   def return_current_time_attr_setting
@@ -60,6 +61,6 @@ class ExchangeRate < ApplicationRecord
 
   # method used in config/cronotab for daily download and saving
   def perform
-    parse_xml_and_save_daily_rates(XmlDownloader.get_XML_from_url(@url))
+    parse_xml_and_save_daily_rates(@xmlDownloader.get_XML_from_url(@url))
   end
 end
